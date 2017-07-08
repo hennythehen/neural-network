@@ -41,8 +41,3 @@ AdjacencyListEdge<T>::AdjacencyListEdge()
 //	Node<T> nd = new Node<T>(val);
 //	this->backwardNode = &nd;
 //}
-
-template<typename T>
-AdjacencyListEdge<T>::~AdjacencyListEdge()
-{
-}

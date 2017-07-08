@@ -1,18 +1,15 @@
 #include "Layer.h"
 
-template<typename T>
-Layer<T>::Layer(int size)
+template <typename T>
+Layer<T>* Layer<T>::getForwardLayer()
 {
-	this->neurons = std::vector<T>;
-	for (int i = 0; i < size; i++) {
-		this->neurons->insert(new T())
-	}
+	return this->forwardLayer;
 }
 
-template<typename T>
-int Layer<T>::size()
+template <typename T>
+Layer<T>* Layer<T>::getPrevLayer()
 {
-	return this->neurons->size();
+	return this->prevLayer;
 }
 
 template<typename T>

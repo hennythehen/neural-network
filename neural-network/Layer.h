@@ -5,10 +5,14 @@ template<typename T>
 class Layer
 {
 private:
-	std::vector<T> neurons;
+	std::vector<int> nodeIndices;
+	Layer* forwardLayer;
+	Layer* prevLayer;
 public:
 	int size();
 	std::vector<double> propagate;
-	Layer(int size);
+	Layer* getForwardLayer();
+	Layer* getPrevLayer();
+	Layer(std::vector<int> nodeIndices);
 	~Layer();
 };

@@ -114,15 +114,17 @@
     <ClInclude Include="AdjacencyList.h" />
     <ClInclude Include="AdjacencyListEdge.h" />
     <ClInclude Include="AdjacencyMatrix.h" />
-    <ClInclude Include="AdjacencyNode.h" />
+    <ClInclude Include="AdjacencyListNode.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AdjacencyList.cpp" />
+    <ClCompile Include="AdjacencyList.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="AdjacencyListEdge.cpp" />
     <ClCompile Include="AdjacencyMatrix.cpp" />
-    <ClCompile Include="AdjacencyNode.cpp" />
+    <ClCompile Include="AdjacencyListNode.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Source.cpp" />

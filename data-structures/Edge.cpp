@@ -42,8 +42,3 @@ void Edge<T>::setWeight(double weight)
 	this->weight = weight;
 	return;
 }
-
-template <typename T>
-Edge<T>::~Edge()
-{
-}

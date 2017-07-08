@@ -6,7 +6,6 @@ protected:
 	T* element;
 public:
 	Node(T);
-	T getElement();
-	~Node();
+	T* getElement();
 };
 

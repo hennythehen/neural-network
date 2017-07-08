@@ -16,3 +16,13 @@ double Neuron::getOutput()
 {
 	return this->output;
 }
+
+Neuron::Neuron()
+{
+
+}
+
+Neuron::~Neuron()
+{
+
+}

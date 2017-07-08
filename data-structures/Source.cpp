@@ -1,7 +1,4 @@
-#include "AdjacencyList.h"
-
 void main()
 {
-	int v = 5;
-	
+	int v = 5;	
 }

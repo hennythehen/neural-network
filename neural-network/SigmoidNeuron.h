@@ -1,6 +1,6 @@
 #pragma once
 #include "Neuron.h"
-class SigmoidNeuron : public Neuron
+class SigmoidNeuron
 {
 private:
 	double internalFunc(double input);

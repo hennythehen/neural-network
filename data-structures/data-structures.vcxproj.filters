@@ -27,18 +27,15 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AdjacencyNode.h">
+    <ClInclude Include="AdjacencyListEdge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AdjacencyListEdge.h">
+    <ClInclude Include="AdjacencyListNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdjacencyMatrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AdjacencyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Edge.cpp">
@@ -47,10 +44,13 @@
     <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AdjacencyNode.cpp">
+    <ClCompile Include="AdjacencyListEdge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AdjacencyListEdge.cpp">
+    <ClCompile Include="AdjacencyListNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdjacencyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">

@@ -16,5 +16,4 @@ public:
 	Node<T>* getForwardNode();
 	double getWeight();
 	void setWeight(double weight);
-	~Edge();
 };

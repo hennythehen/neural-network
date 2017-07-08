@@ -1,14 +1,9 @@
 #include "AdjacencyList.h"
-#include "AdjacencyNode.h"
 #include <vector>
 
 template<typename T>
-AdjacencyList<T>::AdjacencyList()
+int AdjacencyList<T>::insert(T* value)
 {
-}
-
-template<typename T>
-int AdjacencyList<T>::insert(T value) {
 	AdjacencyNode<T> nd = new AdjacencyNode<T>(value);
 	this->nodes.push_back(nd);
 	return this->nodes.size() - 1;
@@ -76,9 +71,4 @@ template<typename T>
 std::vector<AdjacencyListEdge<T>> AdjacencyList<T>::getConnectedEdges(int ndIndex)
 {
 	return this->list->at(ndIndex);
-}
-
-template<typename T>
-AdjacencyList<T>::~AdjacencyList()
-{
 }
