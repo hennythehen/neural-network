@@ -10,7 +10,14 @@ private:
 	std::vector<AdjacencyListEdge<T>> edges;
 	int listIndex;
 public:
-	AdjacencyListNode(T*);
-	int getListIndex();
+	AdjacencyListNode(T* value)
+	{
+		this->element = value;
+	}
+	
+	int getListIndex()
+	{
+		return this->listIndex;
+	}
 };
 

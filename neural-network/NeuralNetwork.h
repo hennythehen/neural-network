@@ -1,5 +1,5 @@
 #pragma once
-#include "..\data-structures\AdjacencyList.h"
+#include "AdjacencyList.h"
 #include "SigmoidNeuron.h"
 
 class NeuralNetwork

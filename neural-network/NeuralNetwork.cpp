@@ -1,5 +1,5 @@
 #include "NeuralNetwork.h"
-#include "..\data-structures\AdjacencyList.h"
+#include "AdjacencyList.h"
 
 NeuralNetwork::NeuralNetwork(int layerCount, int* const neuronsInLayer)
 {

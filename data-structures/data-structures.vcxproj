@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C0B816DE-23CC-41DF-81C4-366CEFBB30C3}</ProjectGuid>
+    <ProjectGuid>{7BDB78AC-E84C-40AE-AEAC-650E31DF038F}</ProjectGuid>
     <RootNamespace>datastructures</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -111,23 +111,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AdjacencyList.h" />
-    <ClInclude Include="AdjacencyListEdge.h" />
-    <ClInclude Include="AdjacencyMatrix.h" />
-    <ClInclude Include="AdjacencyListNode.h" />
-    <ClInclude Include="Edge.h" />
-    <ClInclude Include="Node.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AdjacencyList.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="AdjacencyListEdge.cpp" />
-    <ClCompile Include="AdjacencyMatrix.cpp" />
-    <ClCompile Include="AdjacencyListNode.cpp" />
-    <ClCompile Include="Edge.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="..\neural-network\AdjacencyList.h" />
+    <ClInclude Include="..\neural-network\AdjacencyListEdge.h" />
+    <ClInclude Include="..\neural-network\AdjacencyListNode.h" />
+    <ClInclude Include="..\neural-network\Edge.h" />
+    <ClInclude Include="..\neural-network\Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
