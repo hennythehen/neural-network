@@ -8,6 +8,15 @@ class AdjacencyList
 {
 private:
 	std::vector<AdjacencyListNode<T>*> nodes;
+	std::vector<double> extractWeights(std::vector<AdjacencyListEdge<T>*> edges)
+	{
+		std::vector<double> weights;
+		for (int i = 0; i < edges.size(); i++) {
+			AdjacencyListEdge<T>* e = edges.at(i);
+			weights.push_back(e->getWeight());
+		}
+		return weights;
+	}
 public:
 	int insert(T* value)
 	{
@@ -16,11 +25,21 @@ public:
 		return this->nodes.size() - 1;
 	}
 
+	T* element(int index)
+	{
+		AdjacencyListNode<T>* nd = this->nodes.at(index);
+		return nd->getElement();
+	}
+
 	void connect(int orig, int dest)
 	{
-		AdjacencyListEdge<T> edge;
-		edge.setOriginNode(&(this->nodes.at(orig)));
-		edge.setForwardNode(&(this->nodes.at(dest)));
+		AdjacencyListEdge<T>* edge = new AdjacencyListEdge<T>();
+		AdjacencyListNode<T>* origNd = this->nodes.at(orig);
+		AdjacencyListNode<T>* destNd = this->nodes.at(dest);
+		edge->setOriginNode(this->nodes.at(orig));
+		edge->setForwardNode(this->nodes.at(dest));
+		origNd->connectForwardEdge(edge);
+		destNd->connectBackEdge(edge);
 	}
 
 	void connect(int orig, int dest[])
@@ -46,9 +65,26 @@ public:
 		}
 	}
 
-	std::vector<Node<T>> getConnectedNodes(int ndIndex)
+	void connect(std::vector<int>* orig, std::vector<int>* dest)
 	{
-		std::vector<AdjacencyListEdge<T>> edges = this->list.at(ndIndex);
+		for (int i = 0; i < orig->size(); i++) {
+			for (int j = 0; j < dest->size(); j++) {
+				this->connect(orig->at(i), dest->at(j));
+			}
+		}
+
+	}
+
+	std::vector<AdjacencyListNode<T>*> getForwardNodes(int ndIndex)
+	{
+		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
+		nd->
+	}
+
+	std::vector<AdjacencyListNode<T>*> getConnectedNodes(int ndIndex)
+	{
+		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
+		std::vector<AdjacencyListEdge<T>*> edges = this->list.at(ndIndex);
 		std::vector<Node<T>> nodes;
 		for (int i = 0; i < this->edges.size(); i++) {
 			AdjacencyListEdge<T> e = edges.at(i);
@@ -68,8 +104,15 @@ public:
 		return values;
 	}
 
-	std::vector<AdjacencyListEdge<T>> getConnectedEdges(int ndIndex)
+	std::vector<double> getForwardEdgeWeights(int ndIndex)
 	{
-		return this->list->at(ndIndex);
+		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
+		return this->extractWeights(nd->getForwardEdges());
+	}
+
+	std::vector<double> getBackEdgeWeights(int ndIndex)
+	{
+		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
+		return this->extractWeights(nd->getBackEdges());
 	}
 };
