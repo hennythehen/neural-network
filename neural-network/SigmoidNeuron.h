@@ -11,6 +11,12 @@ public:
 	{
 		return 1 / (1 + exp((-1) * input));
 	}
+
+	static double internalDerivFunc(double input)
+	{
+		return exp(input) / pow((exp(input) + 1), 2);
+	}
+
 	SigmoidNeuron();
 	~SigmoidNeuron();
 };

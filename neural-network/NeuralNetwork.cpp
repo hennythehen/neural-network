@@ -26,7 +26,6 @@ void NeuralNetwork::train(std::vector<double> input, std::vector<double> expecte
 	layerOutputs.push_back(input);
 	std::vector<double> output = propagate(input, 0, 1, layerOutputs);
 	double error = vectorNorm(vectorSubtract(output, expectedOutput));
-	
 }
 
 std::vector<double> NeuralNetwork::propagate(
@@ -51,6 +50,13 @@ std::vector<double> NeuralNetwork::propagate(
 	else {
 		return this->propagate(output, destLayerIndex, destLayerIndex + 1);
 	}
+}
+
+std::vector<double> NeuralNetwork::backPropagate(std::vector<double> error,
+	int currLayer,
+	int backLayer)
+{
+	
 }
 
 int NeuralNetwork::getNumLayers()

@@ -7,13 +7,15 @@ class NeuralNetwork
 private:
 	AdjacencyList<SigmoidNeuron>* adjList;
 	std::vector<std::vector<int>*> neuronLayers;
-	std::vector<std::vector<double>> layerOutputs;
+	std::vector<std::vector<double>> layerOutputCache;
 
 	std::vector<double> propagate(std::vector<double> input,
 		int origLayer,
 		int destLayer,
 		std::vector<std::vector<double>> &outputCache);
-	std::vector<double> backPropagate(double error, int currLayer, int backLayer);
+	std::vector<double> backPropagate(std::vector<double> error,
+		int currLayer, 
+		int backLayer);
 public:
 	int getNumLayers();
 

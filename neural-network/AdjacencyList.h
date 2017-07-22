@@ -81,6 +81,11 @@ public:
 		nd->
 	}
 
+	std::vector<AdjacencyListNode<T>*> getNode(std::vector<int> indices)
+	{
+		std::vector<AdjacencyListNode<T>> 
+	}
+
 	std::vector<AdjacencyListNode<T>*> getConnectedNodes(int ndIndex)
 	{
 		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
