@@ -24,16 +24,19 @@ void NeuralNetwork::train(std::vector<double> input, std::vector<double> expecte
 {
 	std::vector<std::vector<double>> layerOutputs;
 	layerOutputs.push_back(input);
-	std::vector<double> output = propagate(input, 0, 1, layerOutputs);
-	double error = vectorNorm(vectorSubtract(output, expectedOutput));
+	std::vector<double> inputLayerError = propagate(input, expectedOutput, 0, 1);
 }
 
 std::vector<double> NeuralNetwork::propagate(
 	std::vector<double> input,
+	std::vector<double> expectedOutput,
 	int origLayerIndex,
-	int destLayerIndex,
-	std::vector<std::vector<double>> &outputCache)
+	int destLayerIndex)
 {
+	/*
+	Begins a recursive forward propagation from input layer to output layer.
+	Each stack frame will eventually be used for back propagation.
+	*/
 	std::vector<int>* destNodeIndices = this->neuronLayers.at(destLayerIndex);
 	std::vector<double> output;
 	for (int i = 0; i < destNodeIndices->size(); i++) {
@@ -42,13 +45,43 @@ std::vector<double> NeuralNetwork::propagate(
 		output.push_back(SigmoidNeuron::internalFunc(result));
 	}
 
-	outputCache.push_back(output);
-	//check if the output layer has been reached
+	/*
+	The peak of the recursion stack will be the last (output) layer of the network.
+	*/
+
 	if (destLayerIndex == this->getNumLayers() - 1) {
-		return output;
+		std::vector<double> delta_f = vectorSubtract(output, expectedOutput);
+		for (int k = 0; k < delta_f.size(); k++) {
+			delta_f.at(k) *= (output.at(k) * (1 - output.at(k)));
+			applyWeightDelta(input, delta_f.at(k), destLayerIndex);
+		}
+		return delta_f;
 	}
-	else {
-		return this->propagate(output, destLayerIndex, destLayerIndex + 1);
+	
+
+	std::vector<double> delta_l = this->propagate(output, expectedOutput, destLayerIndex, destLayerIndex + 1);
+	
+	/*
+	The error coming from the forward layer is known.
+	Unwinding the stack accesses each layer and its input in reverse succession.
+	With the layer's input and forward error known, weight deltas can be applied
+	*/
+	std::vector<int>* origNodeIndices = this->neuronLayers.at(origLayerIndex);
+	std::vector<double> delta_j;
+	
+	for (int i = 0; i < origNodeIndices->size(); i++) {
+		double delta_j_i = dotProduct(this->adjList->getForwardEdgeWeights(origNodeIndices->at(i)), delta_l) * input.at(i) * (1 - input.at(i));
+		delta_j.push_back(delta_j_i);
+		applyWeightDelta(input, delta_j_i, destLayerIndex);
+	}
+}
+
+void NeuralNetwork::applyWeightDelta(std::vector<double> origOutput, double delta_j, int destNodeIndex)
+{
+	std::vector<double> backWeights = this->adjList->getBackEdgeWeights(destNodeIndex);
+	for (int i = 0; i < backWeights.size(); i++) {
+		double weightDelta_i = this->trainingSpeedFactor * origOutput.at(i) * delta_j * (-1);
+		backWeights.at(i) += weightDelta_i;
 	}
 }
 
