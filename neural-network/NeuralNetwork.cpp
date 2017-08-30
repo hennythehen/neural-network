@@ -74,6 +74,8 @@ std::vector<double> NeuralNetwork::propagate(
 		delta_j.push_back(delta_j_i);
 		applyWeightDelta(input, delta_j_i, destLayerIndex);
 	}
+
+	return delta_j;
 }
 
 void NeuralNetwork::applyWeightDelta(std::vector<double> origOutput, double delta_j, int destNodeIndex)
@@ -83,13 +85,6 @@ void NeuralNetwork::applyWeightDelta(std::vector<double> origOutput, double delt
 		double weightDelta_i = this->trainingSpeedFactor * origOutput.at(i) * delta_j * (-1);
 		backWeights.at(i) += weightDelta_i;
 	}
-}
-
-std::vector<double> NeuralNetwork::backPropagate(std::vector<double> error,
-	int currLayer,
-	int backLayer)
-{
-	
 }
 
 int NeuralNetwork::getNumLayers()

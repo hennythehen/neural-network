@@ -8,7 +8,7 @@ int main()
 	int layers[] = { 2, 3, 3, 3, 5, 3, 3, 3, 3, 3 };
 	NeuralNetwork ann(layerCount, layers);
 	
-	cout << "Goodbye world";
+	cout << "Testing \n";
 
 	system("pause");
 }
