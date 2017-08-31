@@ -16,7 +16,7 @@ private:
 	void applyWeightDelta(std::vector<double> origOutput, double delta_j, int destLayerIndex);
 public:
 	int getNumLayers();
-
+	void dumpWeights();
 	void train(std::vector<double> input, std::vector<double> expectedOutput);
 	NeuralNetwork(int, int* const);
 };

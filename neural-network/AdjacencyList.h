@@ -2,6 +2,7 @@
 #include <vector>
 #include "AdjacencyListEdge.h"
 #include "AdjacencyListNode.h"
+#include <cstdlib>
 
 template <typename T>
 class AdjacencyList
@@ -34,6 +35,7 @@ public:
 	void connect(int orig, int dest)
 	{
 		AdjacencyListEdge<T>* edge = new AdjacencyListEdge<T>();
+        edge->setWeight((double)(rand()/double(RAND_MAX)));
 		AdjacencyListNode<T>* origNd = this->nodes.at(orig);
 		AdjacencyListNode<T>* destNd = this->nodes.at(dest);
 		edge->setOriginNode(this->nodes.at(orig));
@@ -75,39 +77,10 @@ public:
 
 	}
 
-	std::vector<AdjacencyListNode<T>*> getForwardNodes(int ndIndex)
-	{
-		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
-		nd->
-	}
-
-	std::vector<AdjacencyListNode<T>*> getNode(std::vector<int> indices)
-	{
-		std::vector<AdjacencyListNode<T>> 
-	}
-
-	std::vector<AdjacencyListNode<T>*> getConnectedNodes(int ndIndex)
-	{
-		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
-		std::vector<AdjacencyListEdge<T>*> edges = this->list.at(ndIndex);
-		std::vector<Node<T>> nodes;
-		for (int i = 0; i < this->edges.size(); i++) {
-			AdjacencyListEdge<T> e = edges.at(i);
-			nodes.insert(e.forward);
-		}
-		return nodes;
-	}
-
-	std::vector<T> getConnectedNodeValues(int ndIndex)
-	{
-		std::vector<Node<T>> nodes = this->getConnectedNodes;
-		std::vector<T> values;
-		for (int i = 0; i < nodes.size(); i++) {
-			Node<T> nd = nodes.at(i);
-			values.insert(nd.getElement());
-		}
-		return values;
-	}
+    std::vector<AdjacencyListNode<T>*> getNodes()
+    {
+        return this->nodes;
+    }
 
 	std::vector<double> getForwardEdgeWeights(int ndIndex)
 	{
@@ -120,4 +93,9 @@ public:
 		AdjacencyListNode<T>* nd = this->nodes.at(ndIndex);
 		return this->extractWeights(nd->getBackEdges());
 	}
+
+    void setBackEdgeWeights(std::vector<double> weights, int ndIndex)
+    {
+        this->nodes.at(ndIndex)->setBackEdgeWeights(weights);
+    }
 };

@@ -36,6 +36,13 @@ public:
 		return this->backEdges;
 	}
 
+	void setBackEdgeWeights(std::vector<double> weights)
+	{
+		for (int i = 0; i < weights.size(); i++) {
+			this->backEdges.at(i)->setWeight(weights.at(i));
+		}
+	}
+
 	int getListIndex()
 	{
 		return this->listIndex;
